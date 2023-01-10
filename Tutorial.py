@@ -10,6 +10,9 @@ from art import *
 from replit import audio
 import sys
 from tqdm import tqdm
+import React
+import main
+import Main_Menu
 def slowprint(s, colour):
   for c in s + '\n':
     sys.stdout.write(colour + c + cr.Fore.WHITE)
@@ -24,7 +27,7 @@ def tutorial():
   tprint("Tutorial")
   print(
     "-----------------------------------------------------------------------------------------------")
-  slowprint("Welcome to Tutorial Where you can how to play these 3 games! ",cr.Fore.WHITE)
+  slowprint("Welcome to Tutorial Where you can learn how to play 3 different speed games",cr.Fore.WHITE)
   while True:
     print(f"{cr.Fore.LIGHTCYAN_EX}[1] Reaction Time")
     print(f"{cr.Fore.GREEN}[2] Game2")
@@ -32,10 +35,10 @@ def tutorial():
     print(f"{cr.Fore.RED}[4] Main Menu")
     Tutorial = input("Please select a game to learn about? ")
     if Tutorial == "1":
-      React.react()
+      2
     if Tutorial == "2":
-      3
+      2
     if Tutorial == "3":
       5
     if Tutorial == "4":
-      import main
+      Main_Menu.main()

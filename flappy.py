@@ -42,8 +42,8 @@ class Bird(pygame.sprite.Sprite):
 
     WIDTH = HEIGHT = 36
     SINK_SPEED = 0.16
-    CLIMB_SPEED = 0.4
-    CLIMB_DURATION = 98.3
+    CLIMB_SPEED = 0.3
+    CLIMB_DURATION = 96
 
     def __init__(self, x, y, msec_to_climb, images):
         """Initialise a new Bird instance.
@@ -152,7 +152,7 @@ class PipePair(pygame.sprite.Sprite):
 
     WIDTH = 80
     PIECE_HEIGHT = 32
-    ADD_INTERVAL = 3000
+    ADD_INTERVAL = 3100
 
     def __init__(self, pipe_end_img, pipe_body_img):
         """Initialises a new random PipePair.
