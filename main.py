@@ -45,7 +45,7 @@ for i in range(num_of_cows):
   cowImg.append(pygame.image.load('cow.png'))
   cowX.append(random.randint(0,736))
   cowY.append(random.randint(50, 150))
-  cowX_change.append (0.4)
+  cowX_change.append (0.3)
   cowY_change.append (40)
 
 #Rock
@@ -53,7 +53,7 @@ rockImg = pygame.image.load('rock.png')
 rockX = 0
 rockY = 480
 rockX_change = 0
-rockY_change = 1
+rockY_change = 1.5
 rock_state = "ready"
 
 #Score
@@ -63,7 +63,7 @@ textX = 10
 textY = 10
 
 #Lives
-lives_value = 1
+lives_value = 3
 font = pygame.font.Font('freesansbold.ttf',32)
 textX = 10
 textY = 10
@@ -81,7 +81,7 @@ def game_over_text():
 
 def life(x,y):
     lives = font.render("Lives: " + str(lives_value), True, (0, 255, 0))
-    screen.blit(lives, (650, y))
+    screen.blit(lives, (650, 10))
   
 def player(x, y):
   screen.blit(playerImg, (playerX, playerY))
@@ -139,23 +139,24 @@ while running:
   #Cow movement
     for i in range(num_of_cows):
 
-      #Life Removed
-      if cowY[i] > 440 and cowY[i] < 450:
+      #Game Over and Life Removed
+      if cowY[i] > 435 and cowY[i] < 450:
         lives_value -= 1
-
-      #Game Over
-      if cowY[i]> 440:
+        life(650,10)
+        
+        
+      if lives_value == 0:
         for j in range(num_of_cows):
           cowY[j] = 2000
-        game_over_text()
-        break
+          game_over_text()
+          break
         
       cowX[i] += cowX_change[i]
       if cowX[i] <= 0:
-        cowX_change[i] = 0.4
+        cowX_change[i] = 0.5
         cowY[i] += cowY_change[i]
       elif cowX[i] >= 736:
-        cowX_change[i] = -0.4
+        cowX_change[i] = -0.7
         cowY[i] += cowY_change[i]
   #collision
       collision = isCollision(cowX[i],cowY[i],rockX,rockY)
