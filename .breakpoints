@@ -1,5 +1,19 @@
 {
   "files": {
+    "Invaders.py": [
+      {
+        "id": "a4177302-1df6-4b38-be0c-f31cf7f436b3",
+        "line": 75,
+        "version": 2326,
+        "index": 1556
+      },
+      {
+        "id": "8ff3b405-2329-4bde-b0d2-44eebac443eb",
+        "line": 265,
+        "version": 2377,
+        "index": 6923
+      }
+    ],
     "main.py": [
       {
         "id": "9a85e384-66a7-4a8b-b620-25f77cd0e1fa",

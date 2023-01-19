@@ -51,31 +51,28 @@ cowX = []
 cowY = []
 cowX_change = []
 cowY_change = []
-num_of_cows = 5
+num_of_cows = 7
 
 #Getting the range of number of cows
 for i in range(num_of_cows):
   cowImg.append(pygame.image.load('assets/cow.png'))
   cowX.append(random.randint(0,750))
-  cowY.append(random.randint(50, 150))
+  cowY.append(random.randint(25, 125))
   cowX_change.append(4)
   cowY_change.append(40)
-
+  
 #Barrier
 blockImg = []
 blockX = []
 blockY = []
-blockX_change = []
-blockY_change = []
 num_of_blocks = 5
 
 #Getting the range of number of Blocks
 for b in range(num_of_blocks):
   blockImg.append(pygame.image.load('assets/block.png'))
-  blockX.append(random.randint(50,750))
-  blockY.append(random.randint(50, 300))
-  blockX_change.append(0)
-  blockY_change.append(0)
+  blockX.append(random.randint(40,760))
+  blockY.append(random.randint(250, 350))
+
 
 #Rock/Object to hit enemy
 rockImg = pygame.image.load('assets/rock.png')
@@ -121,6 +118,7 @@ def game_over_text():
 def life(x,y):
     lives = font.render("Lives: " + str(lives_value), True, (255, 255, 255))
     screen.blit(lives, (670, 536))
+  
 #Player display
 def player(x, y):
   screen.blit(playerImg, (playerX, playerY))
@@ -130,8 +128,8 @@ def cow(x, y, i):
   screen.blit(cowImg[i], (x, y))
 
 #Block display
-def block(blockX, blockY, b):
-  screen.blit(blockImg[b], (blockX, blockY))
+def blocked(x, y, b):
+  screen.blit(blockImg[b], (x, y))
   
 #Rock display when fired
 def fire_rock(x, y):
@@ -187,7 +185,7 @@ while running:
               playerX = 370
               PlayerY = 480
               for i in range(num_of_cows):
-               cowY[i] = (random.randint(50, 150))
+               cowY[i] = (random.randint(25, 125))
                cowX[i] = (random.randint(0,750))
               for b in range(num_of_blocks):
                blockY[b] = (random.randint(50,150))
@@ -244,16 +242,19 @@ while running:
   
       cow(cowX[i], cowY[i], i)
     
-    for i in range(num_of_blocks):  
+    for b in range(num_of_blocks): 
       #Blocker collision
       blocker = isBlocker(blockX[b], blockY[b], rockX, rockY)
       if blocker:
+        wood_sound = mixer.Sound('sounds/wood_broke.mp3')
+        wood_sound.play()
+        wood_sound.set_volume(0.2)
         rockY = 480
         rock_state = "ready"
-        blockX[b] = random.randint(0,750)
-        blockY[b] = random.randint(50, 150)
+        blockX[b] = random.randint(40,760)
+        blockY[b] = random.randint(250, 350)
 
-      block(blockX[b], blockY[b], b)
+      blocked(blockX[b], blockY[b], b)
 
    # Rock Movement
     if rockY <= 0:
@@ -268,4 +269,3 @@ while running:
     show_score(textX, textY)
     life(textX, textY)
     pygame.display.update()
-
